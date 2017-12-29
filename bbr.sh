@@ -79,7 +79,7 @@ installbbr(){
 
 	#Finish Install
 	update-grub
-	echo -e "\033[42;37m[注意]\033[0m 重启VPS后，请重新运行脚本开启魔改BBR \033[42;37m bash bbr.sh start \033[0m"
+	echo -e "\033[42;37m[注意]\033[0m 重启VPS后，请重新运行脚本开启BBR \033[42;37m bash bbr.sh start \033[0m"
 	stty erase '^H' && read -p "需要重启VPS后，才能开启BBR，是否现在重启 ? [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
 		if [[ $yn == [Yy] ]]; then
@@ -99,10 +99,10 @@ startbbr(){
     	depmod -a
     	modprobe tcp_tsunami
 	rm -rf /etc/sysctl.conf
-	wget -O /etc/sysctl.conf -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/YankeeBBR/master/sysctl.conf
+	wget -O /etc/sysctl.conf -N --no-check-certificate https://raw.githubusercontent.com/kanecolin/CrazyBBR/master/sysctl.conf
 	sysctl -p
     cd .. && rm -rf $dir/tsunami
-	echo "魔改版BBR启动成功！"
+	echo "BBR Debian Smart Installation Package 启动成功！"
 }
 
 
